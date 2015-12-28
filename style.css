@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #000;
+    font-size:20px;
+    font-family: sans-serif;
+}
+
+.tile-container {
+    margin-top: 3rem;
+    list-style-type: none;
+}
+
+.tile {
+    background: #222;
+    width: 25%;
+    padding-top: 25%;
+    float: left;
+    outline: solid 2px #000;
+}
+
+nav {
+    top: 0;
+    display: block;
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+    float: left;
+    height: 3rem;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.control {
+    float: left;
+    margin: 1rem 0.5rem;
+}
+
+input[type="text"] {
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    transition: border 0.3s;
+    color: #fff;
+    display: block;
+    font-size: inherit;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-bottom: solid 2px #444;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #444;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+    border-color: #fff;
+    outline: none;
+}
+
+svg {
+    float: left;
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2px;
+    stroke: #444;
+    transition: stroke 0.3s;
+}
+
+svg:hover,
+svg:focus {
+    stroke: #fff;
+}
