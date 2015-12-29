@@ -64,7 +64,6 @@ input[type="text"]:focus {
 }
 
 svg {
-    float: left;
     width: 1rem;
     height: 1rem;
     stroke-width: 2px;
