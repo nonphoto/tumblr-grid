@@ -10,23 +10,29 @@ html {
 }
 
 .tile-container {
+    display: none;
+    position: absolute;
     margin-top: 3rem;
     list-style-type: none;
 }
 
 .tile {
-    background: #222;
     width: 25%;
-    padding-top: 25%;
+    height: 10rem;
     float: left;
     outline: solid 2px #000;
+    overflow: hidden;
+}
+
+.tile img {
+    width: 100%;
 }
 
 nav {
     top: 0;
     display: block;
     position: fixed;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.75);
     float: left;
     height: 3rem;
     width: 100%;
@@ -39,22 +45,21 @@ nav {
 }
 
 input[type="text"] {
+    display: block;
     appearance: none;
     box-shadow: none;
     border-radius: none;
-    background-color: rgba(0,0,0,0);
     border: none;
+    background-color: rgba(0,0,0,0);
     transition: border 0.3s;
     color: #fff;
-    display: block;
     font-size: inherit;
     background-color: rgba(0,0,0,0);
-    border: none;
-    border-bottom: solid 2px #444;
+    border-bottom: solid 2px rgba(255,255,255,0.5);
 }
 
 input[type="text"]::-webkit-input-placeholder {
-    color: #444;
+    color: rgba(255,255,255,0.5);
 }
 
 input[type="text"]:hover,
@@ -67,7 +72,7 @@ svg {
     width: 1rem;
     height: 1rem;
     stroke-width: 2px;
-    stroke: #444;
+    stroke: rgba(255,255,255,0.5);
     transition: stroke 0.3s;
 }
 
