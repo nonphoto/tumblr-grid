@@ -17,8 +17,8 @@ html {
 }
 
 .tile {
-    width: 25%;
-    height: 10rem;
+    width: 25vw;
+    height: 25vw;
     float: left;
     outline: solid 2px #000;
     overflow: hidden;
