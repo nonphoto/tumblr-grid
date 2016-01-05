@@ -9,27 +9,18 @@ html {
     font-family: sans-serif;
 }
 
-#tile-container {
-    display: inline-block;
-    margin-top: 3rem;
-    list-style-type: none;
-}
-
-.tile {
-    display: inline-block;
-    width: 25vw;
-    height: 25vw;
-    float: left;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.tile:hover {
-    transform: translateY(-10px);
-}
-
-.tile img {
+svg {
     display: block;
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2px;
+    stroke: #aaa;
+    transition: stroke 0.2s;
+}
+
+svg:hover,
+svg:focus {
+    stroke: #fff;
 }
 
 nav {
@@ -56,7 +47,7 @@ input[type="text"] {
     border-radius: 0;
     border: none;
     background-color: rgba(0,0,0,0);
-    transition: border 0.3s;
+    transition: border 0.2s;
     color: #fff;
     font-size: inherit;
     background-color: rgba(0,0,0,0);
@@ -73,18 +64,27 @@ input[type="text"]:focus {
     outline: none;
 }
 
-svg {
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    stroke-width: 2px;
-    stroke: #aaa;
-    transition: stroke 0.3s;
+#tile-container {
+    display: inline-block;
+    margin-top: 3rem;
+    list-style-type: none;
 }
 
-svg:hover,
-svg:focus {
-    stroke: #fff;
+.tile {
+    display: inline-block;
+    width: 25vw;
+    height: 25vw;
+    float: left;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.tile:hover {
+    transform: translateY(-10px);
+}
+
+.tile img {
+    display: block;
 }
 
 #spinner {
