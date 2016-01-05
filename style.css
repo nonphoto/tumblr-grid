@@ -74,6 +74,7 @@ input[type="text"]:focus {
 }
 
 svg {
+    display: block;
     width: 1rem;
     height: 1rem;
     stroke-width: 2px;
@@ -84,4 +85,17 @@ svg {
 svg:hover,
 svg:focus {
     stroke: #fff;
+}
+
+#spinner {
+    display: none;
+    margin: 2rem auto;
+    animation-name: spin;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
