@@ -31,11 +31,10 @@ function getPhotos() {
                         $.each(v1.photos, function(j, v2) {
 
                             // Construct image
-                            var image_src = v2.original_size.url;
                             var image = new Image();
-                            image.src = image_src;
+                            image.src = v2.original_size.url;;
 
-                            // Set dimensions based on aspect ratio
+                            // Scale with respect to the larger dimension
                             if (image.width < image.height) {
                                 image.style.width = "100%";
                                 image.style.height = "auto";

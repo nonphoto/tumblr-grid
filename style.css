@@ -20,8 +20,12 @@ html {
     width: 25vw;
     height: 25vw;
     float: left;
-    outline: solid 2px #000;
     overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.tile:hover {
+    transform: translateY(-10px);
 }
 
 .tile img {
@@ -37,6 +41,7 @@ nav {
     height: 3rem;
     width: 100%;
     padding: 0 0.5rem;
+    z-index: 1000;
 }
 
 .control {
