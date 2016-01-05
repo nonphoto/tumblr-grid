@@ -26,7 +26,6 @@ function getPhotos() {
             },
             success: function(results) {
                 photo_count += get_amount;
-                console.log(results);
                 $.each(results.response.liked_posts, function(i, v1) {
                     if (typeof v1.photos != 'undefined') {
                         $.each(v1.photos, function(j, v2) {
@@ -34,8 +33,6 @@ function getPhotos() {
                             // Construct image
                             var image = new Image();
                             image.src = v2.original_size.url;;
-
-                            console.log("size: " + image.width + ", " + image.height);
                             image.onload = function() {
                                 // Scale with respect to the larger dimension
                                 if (this.width < this.height) {
@@ -48,13 +45,18 @@ function getPhotos() {
                                 }
                             }
 
-                            $("#tile-container").append(
-                                $("<li>").attr("class", "tile").append(image)
-                            );
-                        });
-                    }
+                            var list_item = $("<li>");
+                            list_item.addClass("tile")
+                            list_item.click(function() {
+				$("#viewer-image").attr("src", image.src);
+				$("#viewer").show();
+			    });
+			    list_item.append(image)
+			    $("#tile-container").append(list_item);
+			});
+		    }
                 });
-            }
+	    }
         });
     }
 }
@@ -62,6 +64,10 @@ function getPhotos() {
 $("#form-username").submit(function() {
     loadUser();
     return false;
+});
+
+$("#viewer").click(function() {
+    $(this).hide();
 });
 
 $(window).scroll(function () {
