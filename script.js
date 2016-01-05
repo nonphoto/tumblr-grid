@@ -15,43 +15,46 @@ function loadUser() {
 function getPhotos() {
     if (!loading) {
         loading = true;
-	$("#spinner").show();
+        $("#spinner").show();
         $.ajax({
-	    type: "GET",
-	    url: "https://api.tumblr.com/v2/blog/" + host_name + ".tumblr.com/likes?api_key=" + api_key,
-	    dataType: "jsonp",
-	    data: {
+            type: "GET",
+            url: "https://api.tumblr.com/v2/blog/" + host_name + ".tumblr.com/likes?api_key=" + api_key,
+            dataType: "jsonp",
+            data: {
                 "limit": get_amount,
                 "offset": photo_count
-	    },
-	    success: function(results) {
+            },
+            success: function(results) {
                 photo_count += get_amount;
                 console.log(results);
                 $.each(results.response.liked_posts, function(i, v1) {
-		    if (typeof v1.photos != 'undefined') {
+                    if (typeof v1.photos != 'undefined') {
                         $.each(v1.photos, function(j, v2) {
 
-			    // Construct image
-			    var image = new Image();
-			    image.src = v2.original_size.url;;
+                            // Construct image
+                            var image = new Image();
+                            image.src = v2.original_size.url;;
 
-			    // Scale with respect to the larger dimension
-			    if (image.width < image.height) {
-                                image.style.width = "100%";
-                                image.style.height = "auto";
-			    }
-			    else {
-                                image.style.width = "auto";
-                                image.style.height = "100%";
-			    }
+                            console.log("size: " + image.width + ", " + image.height);
+                            image.onload = function() {
+                                // Scale with respect to the larger dimension
+                                if (this.width < this.height) {
+                                    this.style.width = "100%";
+                                    this.style.height = "auto";
+                                }
+                                else {
+                                    this.style.width = "auto";
+                                    this.style.height = "100%";
+                                }
+                            }
 
 			    $("#tile-container").append(
                                 $("<li>").attr("class", "tile").append(image)
-			    );
+                            );
                         });
-		    }
+                    }
                 });
-	    }
+            }
         });
     }
 }
