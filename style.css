@@ -91,8 +91,8 @@ svg:focus {
 
 .tile {
     display: inline-block;
-    width: 10vw;
-    height: 10vw;
+    width: 5vw;
+    height: 5vw;
     float: left;
     overflow: hidden;
     transition: transform 0.2s;

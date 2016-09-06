@@ -36,7 +36,7 @@ function getPhotos() {
 							// Construct image
 							var image = new Image();
 							if (v2.alt_sizes.length >= 3) {
-								image.src = v2.alt_sizes[v2.alt_sizes.length - 3].url;
+								image.src = v2.alt_sizes[v2.alt_sizes.length - 1].url;
 							}
 							else {
 								image.src = v2.original_size.url;
