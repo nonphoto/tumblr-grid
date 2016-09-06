@@ -55,8 +55,10 @@ function getPhotos() {
 							var list_item = $("<li>");
 							list_item.addClass("tile")
 							list_item.click(function() {
-								$("#viewer-image").attr("src", v2.original_size.url);
-								$("#viewer-image").click(function() {
+								var viewer_image = $("#viewer-image")
+								viewer_image.attr("src", v2.original_size.url);
+								viewer_image.off("click");
+								viewer_image.click(function() {
 									window.open(v1.post_url, '_blank');
 								});
 								$("#viewer").show();
