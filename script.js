@@ -27,7 +27,6 @@ function getPhotos() {
 				"offset": photo_count
 			},
 			success: function(results) {
-				console.log(results)
 				photo_count += get_amount;
 				$.each(results.response.liked_posts, function(i, v1) {
 					if (typeof v1.photos != 'undefined') {
@@ -80,11 +79,14 @@ $("#viewer").click(function() {
 
 $(window).scroll(function () {
 	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-		return getPhotos();
+		getPhotos();
 	}
 });
 
 $(document).ajaxStop(function () {
 	loading = false;
-	$("spinner").hide();
+	$("#spinner").hide();
+	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+		getPhotos();
+	}
 });

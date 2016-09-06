@@ -95,7 +95,7 @@ svg:focus {
     height: 5vw;
     float: left;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.1s;
 }
 
 .tile:hover {
