@@ -56,6 +56,9 @@ function getPhotos() {
 							list_item.addClass("tile")
 							list_item.click(function() {
 								$("#viewer-image").attr("src", v2.original_size.url);
+								$("#viewer-image").click(function() {
+									window.open(v1.post_url, '_blank');
+								});
 								$("#viewer").show();
 							});
 							list_item.append(image)
