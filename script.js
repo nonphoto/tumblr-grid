@@ -8,10 +8,11 @@ var loading = false;
 
 function loadUser() {
 	host_name = $("#text-username").val();
-	photo_count = 0;
-	$("#tile-container").empty();
-	getPhotos();
-	return false;
+	if (host_name.length > 0) {
+		photo_count = 0;
+		$("#tile-container").empty();
+		getPhotos();
+	}
 }
 
 function getPhotos() {
@@ -83,7 +84,7 @@ $("#viewer").click(function() {
 });
 
 $(window).scroll(function () {
-	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+	if (host_name.length > 0 && $(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
 		getPhotos();
 	}
 });
@@ -91,7 +92,7 @@ $(window).scroll(function () {
 $(document).ajaxStop(function () {
 	loading = false;
 	$("#spinner").hide();
-	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+	if (host_name.length > 0 && $(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
 		getPhotos();
 	}
 });
