@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Tumblr Grid View</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  </head>
-  <body>
-    <nav>
-      <form class="control" id="form-username">
-        <input type="text" placeholder="username" spellcheck="false" id="text-username">
-      </form>
-      <svg class="control" onclick="loadUser()">
-        <line x1="-20%" y1="50%" x2="100%" y2="50%"/>
-        <line x1="100%" y1="50%" x2="50%" y2="0%"/>
-        <line x1="100%" y1="50%" x2="50%" y2="100%"/>
-      </svg>
-      <!-- <svg class="control"> -->
-      <!--   <line x1="0%" y1="50%" x2="100%" y2="50%"/> -->
-      <!-- </svg> -->
-      <!-- <svg class="control"> -->
-      <!--   <line x1="0%" y1="50%" x2="100%" y2="50%"/> -->
-      <!--   <line x1="50%" y1="0%" x2="50%" y2="100%"/> -->
-      <!-- </svg> -->
-    </nav>
-    <div id="viewer">
-      <img id="viewer-image">
-    </div>
-    <ul id="tile-container">
-    </ul>
-    <footer>
-      <svg id="spinner">
-        <line x1="0%" y1="0%" x2="100%" y2="100%"/>
-      </svg>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Tumblr Grid View</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<nav>
+		<form class="control" id="form-username">
+			<input type="text" placeholder="username" spellcheck="false" id="text-username">
+		</form>
+		<svg class="control" onclick="loadUser()">
+			<line x1="-20%" y1="50%" x2="100%" y2="50%"/>
+			<line x1="100%" y1="50%" x2="50%" y2="0%"/>
+			<line x1="100%" y1="50%" x2="50%" y2="100%"/>
+		</svg>
+		<!-- <svg class="control"> -->
+		<!--   <line x1="0%" y1="50%" x2="100%" y2="50%"/> -->
+		<!-- </svg> -->
+		<!-- <svg class="control"> -->
+		<!--   <line x1="0%" y1="50%" x2="100%" y2="50%"/> -->
+		<!--   <line x1="50%" y1="0%" x2="50%" y2="100%"/> -->
+		<!-- </svg> -->
+	</nav>
+	<p id="hint">
+		Enter a Tumblr username to view their likes.
+	</p>
+	<div id="viewer">
+		<img id="viewer-image">
+	</div>
+	<ul id="tile-container">
+	</ul>
+	<svg id="spinner">
+		<line x1="0%" y1="0%" x2="100%" y2="100%"/>
+	</svg>
+	<script src="script.js"></script>
+</body>
 </html>

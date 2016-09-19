@@ -7,11 +7,15 @@ var photo_count = 0;
 var loading = false;
 
 function loadUser() {
+	photo_count = 0;
+	$("#tile-container").empty();
 	host_name = $("#text-username").val();
 	if (host_name.length > 0) {
-		photo_count = 0;
-		$("#tile-container").empty();
+		$("#hint").addClass("disabled");
 		getPhotos();
+	}
+	else {
+		$("#hint").removeClass("disabled");
 	}
 }
 

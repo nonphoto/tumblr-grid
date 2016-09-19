@@ -7,6 +7,8 @@ html {
     background: #000;
     font-size:20px;
     font-family: sans-serif;
+		font-weight: 200;
+		color: #aab;
 }
 
 nav {
@@ -21,6 +23,19 @@ nav {
     z-index: 1000;
 }
 
+p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	opacity: 1;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.2s;
+}
+
+p.disabled {
+	opacity: 0;
+}
+
 .control {
     float: left;
     margin: 1rem 0.5rem;
@@ -32,7 +47,7 @@ input[type="text"] {
     box-shadow: none;
     border-radius: 0;
     border: none;
-    border-bottom: solid 2px #aaa;
+    border-bottom: solid 2px #aab;
     background: rgba(0,0,0,0);
     color: #fff;
     transition: border 0.2s;
@@ -40,7 +55,7 @@ input[type="text"] {
 }
 
 input[type="text"]::-webkit-input-placeholder {
-    color: #aaa;
+    color: #aab;
 }
 
 input[type="text"]:hover,
@@ -54,7 +69,7 @@ svg {
     width: 1rem;
     height: 1rem;
     stroke-width: 2px;
-    stroke: #aaa;
+    stroke: #aab;
     transition: stroke 0.2s;
 }
 
