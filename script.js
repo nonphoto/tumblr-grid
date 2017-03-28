@@ -30,5 +30,10 @@ function loadImages(username) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	loadImages('jonasluebbers')
+	const form = document.getElementById('form-username')
+	const formText = document.getElementById('text-username')
+	form.addEventListener('submit', () => {
+		loadImages(formText.value)
+		return false
+	})
 })
