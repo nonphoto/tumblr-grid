@@ -19,10 +19,21 @@ function loadImages(username) {
 		offset: imageCount
 	})
 		.then((response) => {
-			console.log(response)
+			try {
+				const container = document.getElementById('tile-container')
+				const posts = response.data.response.liked_posts
+				posts.forEach((post) => {
+					const tile = document.createElement('div')
+					tile.classList.add('tile')
+					container.appendChild(tile)
+				})
+			}
+			catch (error) {
+				console.error(error)
+			}
 		})
 		.catch((error) => {
-			console.log(error)
+			console.error(error)
 		})
 }
 
