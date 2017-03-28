@@ -17,6 +17,13 @@ function loadImages(username) {
 				posts.forEach((post) => {
 					const tile = document.createElement('div')
 					tile.classList.add('tile')
+
+					if (post.type === 'photo') {
+						const images = post.photos[0].alt_sizes
+						const image = images.filter(image => image.width === 75)[0]
+						tile.style.backgroundImage = `url(${image.url})`
+					}
+
 					container.appendChild(tile)
 				})
 			}

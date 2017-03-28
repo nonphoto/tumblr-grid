@@ -106,9 +106,12 @@ svg:focus {
 }
 
 .tile {
-	width: 5vw;
-	height: 5vw;
+	width: 75px;
+	height: 75px;
 	transition: transform 100ms;
+
+	background-position: center;
+	background-repeat: none;
 }
 
 .tile:hover {
