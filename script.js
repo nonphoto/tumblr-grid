@@ -1,14 +1,14 @@
 const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const limit = 50
-let imageCount = 100
+let imageCount = 0
 
 function loadImages(username) {
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, {
 		params: {
-			api_key: apiKey
+			api_key: apiKey,
+			limit: limit,
+			offset: imageCount
 		},
-		limit: limit,
-		offset: imageCount
 	})
 		.then((response) => {
 			try {
