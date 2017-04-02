@@ -1,13 +1,19 @@
 const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
-const limit = 50
-let imageCount = 0
+const postLimit = 50
+const scrollThreshold = 20
+
+let postCount = 0
+let isLoading = false
 
 function loadImages(username) {
+	if (isLoading) return
+
+	isLoading = true
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, {
 		params: {
 			api_key: apiKey,
-			limit: limit,
-			offset: imageCount
+			limit: postLimit,
+			offset: postCount
 		},
 	})
 		.then((response) => {
@@ -29,14 +35,27 @@ function loadImages(username) {
 				})
 
 				container.appendChild(fragment)
+				postCount += postLimit
+				isLoading = false
+
+				if (hasScrolledToBottom()) {
+					loadImages(username)
+				}
 			}
 			catch (error) {
 				console.error(error)
+				isLoading = false
 			}
+
 		})
 		.catch((error) => {
 			console.error(error)
+			isLoading = false
 		})
+}
+
+function hasScrolledToBottom() {
+	return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - scrollThreshold)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
