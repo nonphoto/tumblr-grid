@@ -2,10 +2,12 @@ const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const postLimit = 50
 const scrollThreshold = 20
 
+let username = null
 let postCount = 0
 let isLoading = false
 
-function loadImages(username) {
+function loadImages() {
+	if (!username) return
 	if (isLoading) return
 
 	isLoading = true
@@ -58,11 +60,20 @@ function hasScrolledToBottom() {
 	return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - scrollThreshold)
 }
 
+function onScroll() {
+	if (hasScrolledToBottom()) {
+		loadImages()
+	}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	const form = document.getElementById('form-username')
 	const formText = document.getElementById('text-username')
 	form.addEventListener('submit', () => {
-		loadImages(formText.value)
+		username = formText.value
+		loadImages()
 		return false
 	})
+
+	window.addEventListener('scroll', onScroll)
 })
