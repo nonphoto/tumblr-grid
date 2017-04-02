@@ -10,6 +10,14 @@ function loadImages() {
 	if (!username) return
 	if (isLoading) return
 
+	const onLoadEnd = () => {
+		spinner.classList.remove('is-visible')
+		isLoading = false
+	}
+
+	const spinner = document.getElementById('spinner')
+	spinner.classList.add('is-visible')
+
 	isLoading = true
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, {
 		params: {
@@ -19,40 +27,34 @@ function loadImages() {
 		},
 	})
 		.then((response) => {
-			try {
-				const container = document.getElementById('tile-container')
-				const fragment = document.createDocumentFragment()
-				const posts = response.data.response.liked_posts
-				posts.forEach((post) => {
-					const tile = document.createElement('div')
-					tile.classList.add('tile')
+			const container = document.getElementById('tile-container')
+			const fragment = document.createDocumentFragment()
+			const posts = response.data.response.liked_posts
+			posts.forEach((post) => {
+				const tile = document.createElement('div')
+				tile.classList.add('tile')
 
-					if (post.type === 'photo') {
-						const images = post.photos[0].alt_sizes
-						const image = images.filter(image => image.width === 75)[0]
-						tile.style.backgroundImage = `url(${image.url})`
-					}
-
-					fragment.appendChild(tile)
-				})
-
-				container.appendChild(fragment)
-				postCount += postLimit
-				isLoading = false
-
-				if (hasScrolledToBottom()) {
-					loadImages(username)
+				if (post.type === 'photo') {
+					const images = post.photos[0].alt_sizes
+					const image = images.filter(image => image.width === 75)[0]
+					tile.style.backgroundImage = `url(${image.url})`
 				}
-			}
-			catch (error) {
-				console.error(error)
-				isLoading = false
-			}
 
+				fragment.appendChild(tile)
+			})
+
+			container.appendChild(fragment)
+			postCount += postLimit
+
+			onLoadEnd()
+
+			if (hasScrolledToBottom()) {
+				loadImages(username)
+			}
 		})
 		.catch((error) => {
 			console.error(error)
-			isLoading = false
+			onLoadEnd()
 		})
 }
 
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const form = document.getElementById('form-username')
 	const formText = document.getElementById('text-username')
 	form.addEventListener('submit', () => {
-		hint.style.display = 'none'
+		hint.classList.add('is-hidden')
 		username = formText.value
 		loadImages()
 		return false
