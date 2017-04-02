@@ -11,18 +11,6 @@ html {
 	color: #aab;
 }
 
-nav {
-	top: 0;
-	display: block;
-	position: fixed;
-	background: rgba(0, 0, 0, 0.75);
-	float: left;
-	height: 3rem;
-	width: 100%;
-	padding: 0 0.5rem;
-	z-index: 1000;
-}
-
 p {
 	position: absolute;
 	top: 50%;
@@ -36,14 +24,24 @@ p.disabled {
 	opacity: 0;
 }
 
-.control {
-	float: left;
-	margin: 1rem 0.5rem;
+nav {
+	top: 0;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.75);
+	height: 3rem;
+	width: 100%;
+	padding: 0 1rem;
+	z-index: 1000;
+}
+
+form {
+	display: flex;
 }
 
 input[type="text"] {
 	display: block;
-	appearance: none;
 	box-shadow: none;
 	border-radius: 0;
 	border: none;
@@ -62,6 +60,12 @@ input[type="text"]:hover,
 input[type="text"]:focus {
 	border-color: #fff;
 	outline: none;
+}
+
+button {
+	border: none;
+	background: none;
+	margin-left: 0.5rem;
 }
 
 svg {

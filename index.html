@@ -13,12 +13,14 @@
 	<nav>
 		<form class="control" id="form-username" action="#">
 			<input type="text" placeholder="username" spellcheck="false" id="text-username">
+			<button type="submit">
+				<svg class="control">
+					<line x1="-20%" y1="50%" x2="100%" y2="50%"/>
+					<line x1="100%" y1="50%" x2="50%" y2="0%"/>
+					<line x1="100%" y1="50%" x2="50%" y2="100%"/>
+				</svg>
+			</button>
 		</form>
-		<svg class="control" onclick="loadUser()">
-			<line x1="-20%" y1="50%" x2="100%" y2="50%"/>
-			<line x1="100%" y1="50%" x2="50%" y2="0%"/>
-			<line x1="100%" y1="50%" x2="50%" y2="100%"/>
-		</svg>
 	</nav>
 	<p id="hint">
 		Enter a Tumblr username to view their likes.
