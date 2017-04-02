@@ -67,9 +67,11 @@ function onScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	const hint = document.getElementById('hint')
 	const form = document.getElementById('form-username')
 	const formText = document.getElementById('text-username')
 	form.addEventListener('submit', () => {
+		hint.style.display = 'none'
 		username = formText.value
 		loadImages()
 		return false
