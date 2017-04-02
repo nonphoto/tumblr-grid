@@ -1,6 +1,6 @@
 const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const limit = 50
-let imageCount = 0
+let imageCount = 100
 
 function loadImages(username) {
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, {
@@ -13,6 +13,7 @@ function loadImages(username) {
 		.then((response) => {
 			try {
 				const container = document.getElementById('tile-container')
+				const fragment = document.createDocumentFragment()
 				const posts = response.data.response.liked_posts
 				posts.forEach((post) => {
 					const tile = document.createElement('div')
@@ -24,8 +25,10 @@ function loadImages(username) {
 						tile.style.backgroundImage = `url(${image.url})`
 					}
 
-					container.appendChild(tile)
+					fragment.appendChild(tile)
 				})
+
+				container.appendChild(fragment)
 			}
 			catch (error) {
 				console.error(error)
