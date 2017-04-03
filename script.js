@@ -2,7 +2,13 @@ const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const postLimit = 50
 const scrollThreshold = 100
 
+let params = {
+	api_key: apiKey,
+	limit: postLimit,
+}
+
 let username = null
+let postCount = 0
 let lastPostTimestamp = 0
 let isLoading = false
 let hasPostsRemaining = true
@@ -14,27 +20,26 @@ function loadImages() {
 
 	isLoading = true
 
+	const spinner = document.getElementById('spinner')
+	spinner.classList.add('is-visible')
+
 	const onLoadEnd = () => {
 		spinner.classList.remove('is-visible')
 		isLoading = false
 	}
 
-	const spinner = document.getElementById('spinner')
-	spinner.classList.add('is-visible')
-
-	let params = {
-		api_key: apiKey,
-		limit: postLimit,
-	}
-	if (lastPostTimestamp <= 0) {
-		params.offset = 0
+	if (postCount <= 1000) {
+		params.offset = postCount
 	}
 	else {
 		params.before = lastPostTimestamp
 	}
 
+	console.log(postCount)
+
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, { params })
 		.then((response) => {
+
 			const container = document.getElementById('tile-container')
 			const fragment = document.createDocumentFragment()
 			const posts = response.data.response.liked_posts
@@ -55,17 +60,17 @@ function loadImages() {
 					tile.style.backgroundImage = `url(${image.url})`
 				}
 
-				lastPostTimestamp = post.timestamp
-
 				fragment.appendChild(tile)
 			})
 
+			lastPostTimestamp = posts[posts.length - 1].timestamp
+			postCount += postLimit
 			container.appendChild(fragment)
 
 			onLoadEnd()
 
 			if (hasScrolledToBottom()) {
-				loadImages(username)
+				loadImages()
 			}
 		})
 		.catch((error) => {
