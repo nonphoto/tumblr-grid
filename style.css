@@ -16,12 +16,20 @@ p {
 	top: 50%;
 	left: 50%;
 	opacity: 1;
+	visibility: visible;
 	transform: translate(-50%, -50%);
-	transition: opacity 200ms;
+	transition:
+		opacity 400ms,
+		visibility 400ms step-start;
+
 }
 
 p.is-hidden {
 	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 400ms,
+		visibility 400ms step-end;
 }
 
 nav {
