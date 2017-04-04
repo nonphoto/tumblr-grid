@@ -2,11 +2,6 @@ const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const postLimit = 50
 const scrollThreshold = 100
 
-let params = {
-	api_key: apiKey,
-	limit: postLimit,
-}
-
 let username = null
 let postCount = 0
 let lastPostTimestamp = 0
@@ -26,6 +21,11 @@ function loadImages() {
 	const onLoadEnd = () => {
 		spinner.classList.remove('is-visible')
 		isLoading = false
+	}
+
+	let params = {
+		api_key: apiKey,
+		limit: postLimit,
 	}
 
 	if (postCount <= 1000) {
