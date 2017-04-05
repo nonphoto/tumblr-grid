@@ -8,6 +8,14 @@ let lastPostTimestamp = 0
 let isLoading = false
 let hasPostsRemaining = true
 
+let hint = null
+let spinner = null
+let form = null
+let formText = null
+let viewer = null
+let viewerImage = null
+let tileContainer = null
+
 function loadImages() {
 	if (!username) return
 	if (isLoading) return
@@ -15,7 +23,6 @@ function loadImages() {
 
 	isLoading = true
 
-	const spinner = document.getElementById('spinner')
 	spinner.classList.add('is-visible')
 
 	const onLoadEnd = () => {
@@ -40,7 +47,6 @@ function loadImages() {
 	axios.get(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, { params })
 		.then((response) => {
 
-			const container = document.getElementById('tile-container')
 			const fragment = document.createDocumentFragment()
 			const posts = response.data.response.liked_posts
 
@@ -65,7 +71,7 @@ function loadImages() {
 
 			lastPostTimestamp = posts[posts.length - 1].timestamp
 			postCount += postLimit
-			container.appendChild(fragment)
+			tileContainer.appendChild(fragment)
 
 			onLoadEnd()
 
@@ -83,16 +89,15 @@ function hasScrolledToBottom() {
 	return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - scrollThreshold)
 }
 
-function onScroll() {
-	if (hasPostsRemaining && hasScrolledToBottom()) {
-		loadImages()
-	}
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-	const hint = document.getElementById('hint')
-	const form = document.getElementById('form-username')
-	const formText = document.getElementById('text-username')
+	hint = document.getElementById('hint')
+	spinner = document.getElementById('spinner')
+	form = document.getElementById('form-username')
+	formText = document.getElementById('text-username')
+	viewer = document.getElementById('viewer')
+	viewerImage = document.getElementById('viewer-image')
+	tileContainer = document.getElementById('tile-container')
+
 	form.addEventListener('submit', () => {
 		hint.classList.add('is-hidden')
 		username = formText.value
@@ -100,5 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		return false
 	})
 
-	window.addEventListener('scroll', onScroll)
+	window.addEventListener('scroll', () => {
+		if (hasPostsRemaining && hasScrolledToBottom()) {
+			loadImages()
+		}
+	})
 })
