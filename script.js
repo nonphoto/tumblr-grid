@@ -62,8 +62,14 @@ function loadImages() {
 
 				if (post.type === 'photo') {
 					const images = post.photos[0].alt_sizes
-					const image = images.filter(image => image.width === 75)[0]
-					tile.style.backgroundImage = `url(${image.url})`
+					const fullImage = images[0]
+					const thumbnailImage = images.filter(image => image.width <= 100)[0]
+					tile.style.backgroundImage = `url(${thumbnailImage.url})`
+					tile.addEventListener('click', () => {
+						viewer.classList.add('is-active')
+						viewerImage.src = fullImage.url
+						viewerImage.dataset.href = post.post_url
+					})
 				}
 
 				fragment.appendChild(tile)
@@ -103,6 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		username = formText.value
 		loadImages()
 		return false
+	})
+
+	viewer.addEventListener('click', () => {
+		viewer.classList.remove('is-active')
+	})
+
+	viewerImage.addEventListener('click', (e) => {
+		window.open(viewerImage.dataset.href, '_blank')
+		e.stopPropagation()
 	})
 
 	window.addEventListener('scroll', () => {
