@@ -71,6 +71,12 @@ function loadImages() {
 						viewerImage.dataset.href = post.post_url
 					})
 				}
+				else {
+					tile.classList.add('has-no-image')
+					tile.addEventListener('click', () => {
+						window.open(post.post_url, '_blank')
+					})
+				}
 
 				fragment.appendChild(tile)
 			})
