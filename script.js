@@ -56,29 +56,36 @@ function loadImages() {
 				return
 			}
 
-			posts.forEach((post) => {
-				const tile = document.createElement('div')
-				tile.classList.add('tile')
-
+			posts.forEach(post => {
 				if (post.type === 'photo') {
-					const images = post.photos[0].alt_sizes
-					const fullImage = images[0]
-					const thumbnailImage = images.filter(image => image.width <= 100)[0]
-					tile.style.backgroundImage = `url(${thumbnailImage.url})`
-					tile.addEventListener('click', () => {
-						viewer.classList.add('is-active')
-						viewerImage.src = fullImage.url
-						viewerImage.dataset.href = post.post_url
+					post.photos.forEach(photo => {
+						const tile = document.createElement('div')
+						tile.classList.add('tile')
+
+						const fullImage = photo.alt_sizes[0]
+						const thumbnailImage = photo.alt_sizes[photo.alt_sizes.length - 1]
+
+						tile.style.backgroundImage = `url(${thumbnailImage.url})`
+						tile.addEventListener('click', () => {
+							viewer.classList.add('is-active')
+							viewerImage.src = fullImage.url
+							viewerImage.dataset.href = post.post_url
+						})
+
+						fragment.appendChild(tile)
 					})
 				}
 				else {
+					const tile = document.createElement('div')
+					tile.classList.add('tile')
+
 					tile.classList.add('has-no-image')
 					tile.addEventListener('click', () => {
 						window.open(post.post_url, '_blank')
 					})
-				}
 
-				fragment.appendChild(tile)
+					fragment.appendChild(tile)
+				}
 			})
 
 			lastPostTimestamp = posts[posts.length - 1].timestamp
