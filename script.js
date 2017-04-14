@@ -138,4 +138,37 @@ document.addEventListener('DOMContentLoaded', () => {
 			loadImages()
 		}
 	})
+
+	function request(url, params) {
+		params.callback = 'requestCallback'
+		const queryString = Object
+			.entries(params)
+			.reduce((acc, val) => {
+				acc.push(`${val[0]}=${val[1]}`)
+				return acc
+			}, [])
+			.join('&')
+
+		const src = `${url}?${queryString}`
+
+		const promise = new Promise((resolve, reject) => {
+			window.requestCallback = (data) => {
+				debugger
+				window.requestCallback = undefined
+				resolve(data)
+			}
+
+			const script = document.createElement('script')
+			script.type = 'text/javascript'
+			script.async = true
+			script.src = src
+
+			const head = document.getElementsByTagName('head')[0]
+			head.appendChild(script)
+		})
+
+		return promise
+	}
+
+	request('https://api.tumblr.com/v2/blog/jonasluebbers.tumblr.com/likes', {api_key: apiKey}).then((data) => { console.log(data) })
 })
