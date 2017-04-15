@@ -11,51 +11,34 @@ html {
 	color: #aab;
 }
 
-p {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	opacity: 1;
-	visibility: visible;
-	transform: translate(-50%, -50%);
-	transition:
-		opacity 400ms,
-		visibility 400ms step-start;
-
-}
-
-p.is-hidden {
-	opacity: 0;
-	visibility: hidden;
-	transition:
-		opacity 400ms,
-		visibility 400ms step-end;
-}
-
 nav {
 	top: 0;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	position: fixed;
 	background: rgba(0, 0, 0, 0.75);
 	height: 3rem;
 	width: 100%;
-	padding: 0 1rem;
 	z-index: 1000;
 }
 
 form {
 	display: flex;
+	flex-basis: 80%;
+	max-width: 20rem;
 }
 
 input[type="text"] {
 	display: block;
+	flex-grow: 1;
 	box-shadow: none;
 	border-radius: 0;
 	border: none;
 	border-bottom: solid 2px #aab;
 	background: transparent;
 	color: #fff;
+	text-align: center;
 	transition: border 0.2s;
 	font-size: inherit;
 }
@@ -88,6 +71,26 @@ svg {
 svg:hover,
 svg:focus {
 	stroke: #fff;
+}
+
+#hint {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	opacity: 1;
+	visibility: visible;
+	transform: translate(-50%, -50%);
+	transition:
+		opacity 400ms,
+		visibility 400ms step-start;
+}
+
+#hint.is-hidden {
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 400ms,
+		visibility 400ms step-end;
 }
 
 #viewer {
