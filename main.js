@@ -38,7 +38,7 @@ function request(url, params) {
 	return promise
 }
 
-function createFragmentForPosts(posts) {
+function createFragmentForPosts(posts, showViewer) {
 	const fragment = document.createDocumentFragment()
 
 	posts.forEach(post => {
@@ -52,9 +52,7 @@ function createFragmentForPosts(posts) {
 
 				tile.style.backgroundImage = `url(${thumbnailImage.url})`
 				tile.addEventListener('click', () => {
-					viewer.classList.add('is-active')
-					viewerImage.src = fullImage.url
-					viewerImage.dataset.href = post.post_url
+					showViewer(fullImage.url, post.post_url)
 				})
 
 				fragment.appendChild(tile)
@@ -119,6 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	})
 
+	const showViewer = (src, href) => {
+		viewer.classList.add('is-active')
+		viewerImage.src = src
+		viewerImage.dataset.href = href
+	}
+
 	const loadImages = () => {
 		if (!username) return
 		if (isLoading) return
@@ -155,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					return
 				}
 
-				const fragment = createFragmentForPosts(posts)
+				const fragment = createFragmentForPosts(posts, showViewer)
 				tileContainer.appendChild(fragment)
 
 				lastPostTimestamp = posts[posts.length - 1].timestamp
