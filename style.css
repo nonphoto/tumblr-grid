@@ -75,6 +75,7 @@ svg:focus {
 
 #hint {
 	position: absolute;
+	text-align: center;
 	top: 50%;
 	left: 50%;
 	opacity: 1;
@@ -91,6 +92,10 @@ svg:focus {
 	transition:
 		opacity 400ms,
 		visibility 400ms step-end;
+}
+
+#hint.is-error {
+	color: red;
 }
 
 #viewer {

@@ -21,10 +21,6 @@ function request(url, params) {
 	const src = `${url}?${queryString}`
 
 	const promise = new Promise((resolve, reject) => {
-		window.requestCallback = (data) => {
-			window.requestCallback = undefined
-			resolve(data)
-		}
 
 		const script = document.createElement('script')
 		script.type = 'text/javascript'
@@ -32,6 +28,20 @@ function request(url, params) {
 		script.src = src
 
 		const head = document.getElementsByTagName('head')[0]
+
+		const timeout = setTimeout(() => {
+			window.requestCallback = undefined
+			head.removeChild(script)
+			reject(`JSON request timed out: ${url}`)
+		}, 8000)
+
+		window.requestCallback = (data) => {
+			clearTimeout(timeout)
+			window.requestCallback = undefined
+			head.removeChild(script)
+			resolve(data)
+		}
+
 		head.appendChild(script)
 	})
 
@@ -174,6 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			.catch((error) => {
 				console.error(error)
 				onLoadEnd()
+				hint.classList.remove('is-hidden')
+				hint.classList.add('is-error')
+				hint.innerHTML = 'Something went wrong.<br> Please try a different username.'
 			})
 	}
 })
