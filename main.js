@@ -1,6 +1,10 @@
-const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
-const postLimit = 50
 const scrollThreshold = 100
+const postLimit = 50
+
+const params = {
+	api_key: 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8',
+	limit: postLimit
+}
 
 let username = null
 let postCount = 0
@@ -60,19 +64,14 @@ function loadImages() {
 		isLoading = false
 	}
 
-	let params = {
-		api_key: apiKey,
-		limit: postLimit,
-	}
-
 	if (postCount <= 1000) {
 		params.offset = postCount
+		params.before = undefined
 	}
 	else {
+		params.offset = undefined
 		params.before = lastPostTimestamp
 	}
-
-	console.log(postCount)
 
 	request(`https://api.tumblr.com/v2/blog/${username}.tumblr.com/likes`, params)
 		.then((data) => {
@@ -150,6 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	form.addEventListener('submit', () => {
 		hint.classList.add('is-hidden')
 		username = formText.value
+		postCount = 0
+		lastPostTimestamp = 0
+		hasPostsRemaining = true
+
+		while (tileContainer.firstChild) {
+			tileContainer.removeChild(tileContainer.firstChild)
+		}
+
 		loadImages()
 		return false
 	})
