@@ -121,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.stopPropagation()
 	})
 
+	viewerImage.addEventListener('load', () => {
+		viewerImage.classList.add('is-loaded')
+	})
+
 	window.addEventListener('scroll', () => {
 		if (hasPostsRemaining && hasScrolledToBottom()) {
 			loadImages()
@@ -129,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const showViewer = (src, href) => {
 		viewer.classList.add('is-active')
+		viewerImage.classList.remove('is-loaded')
 		viewerImage.src = src
 		viewerImage.dataset.href = href
 	}

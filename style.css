@@ -47,8 +47,7 @@ input[type="text"]::-webkit-input-placeholder {
 	color: #aab;
 }
 
-input[type="text"]:hover,
-input[type="text"]:focus {
+input[type="text"]:hover, input[type="text"]:focus {
 	border-color: #fff;
 	outline: none;
 }
@@ -68,8 +67,7 @@ svg {
 	transition: stroke 0.2s;
 }
 
-svg:hover,
-svg:focus {
+svg:hover, svg:focus {
 	stroke: #fff;
 }
 
@@ -81,17 +79,13 @@ svg:focus {
 	opacity: 1;
 	visibility: visible;
 	transform: translate(-50%, -50%);
-	transition:
-		opacity 400ms,
-		visibility 400ms step-start;
+	transition: opacity 200ms, visibility 200ms step-start;
 }
 
 #hint.is-hidden {
 	opacity: 0;
 	visibility: hidden;
-	transition:
-		opacity 400ms,
-		visibility 400ms step-end;
+	transition: opacity 200ms, visibility 200ms step-end;
 }
 
 #hint.is-error {
@@ -99,26 +93,36 @@ svg:focus {
 }
 
 #viewer {
-	display: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: fixed;
+	visibility: hidden;
+	opacity: 0;
 	width: 100%;
 	height: calc(100% - 3rem);
 	background: rgba(0, 0, 0, 0.75);
 	z-index: 1000;
+	transition: opacity 200ms, visibility 200ms step-end;
 }
 
 #viewer.is-active {
-	display: block;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 200ms, visibility 200ms step-start;
 }
 
 #viewer-image {
-	display: block;
-	position: absolute;
-	top: 50%;
-	left: 50%;
+	opacity: 0;
 	max-width: 80%;
 	max-height: 80%;
-	transform: translate(-50%, -50%);
+	transform: scale(0.95);
+}
+
+#viewer-image.is-loaded {
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity 200ms ease-out, transform 200ms ease-out;
 }
 
 #tile-container {
@@ -132,7 +136,6 @@ svg:focus {
 	width: 75px;
 	height: 75px;
 	transition: transform 100ms;
-
 	background-position: center;
 	background-repeat: none;
 }
