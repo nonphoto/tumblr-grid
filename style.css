@@ -36,7 +36,7 @@ input[type="text"] {
 	border-radius: 0;
 	border: none;
 	border-bottom: solid 2px #aab;
-	background: transparent;
+	background-color: transparent;
 	color: #fff;
 	text-align: center;
 	transition: border 0.2s;
@@ -50,6 +50,11 @@ input[type="text"]::-webkit-input-placeholder {
 input[type="text"]:hover, input[type="text"]:focus {
 	border-color: #fff;
 	outline: none;
+}
+
+input[type="text"]:-webkit-autofill {
+	-webkit-text-fill-color: white;
+	-webkit-box-shadow: 0 0 0 100px black inset !important;
 }
 
 button {
