@@ -1,6 +1,7 @@
 const apiKey = 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8'
 const scrollThreshold = 100
 const postLimit = 50
+const timeoutDuration = 8000
 
 let username = null
 let postCount = 0
@@ -33,7 +34,7 @@ function request(url, params) {
 			window.requestCallback = undefined
 			head.removeChild(script)
 			reject(`JSON request timed out: ${url}`)
-		}, 8000)
+		}, timeoutDuration)
 
 		window.requestCallback = (data) => {
 			clearTimeout(timeout)
