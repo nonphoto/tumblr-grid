@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		const params = {
-			api_key: 'XriRAsdFawgr7IsOMsK7QARfi4kY3zD1myqBL10rqW9JZmjJO8',
+			api_key: apiKey,
 			limit: postLimit
 		}
 
