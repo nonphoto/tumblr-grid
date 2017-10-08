@@ -135,9 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const showViewer = (src, href) => {
 		viewer.classList.add('is-active')
-		viewerImage.classList.remove('is-loaded')
-		viewerImage.src = src
-		viewerImage.dataset.href = href
+
+		if (viewerImage.src !== src) {
+			viewerImage.classList.remove('is-loaded')
+			viewerImage.src = src
+			viewerImage.dataset.href = href
+		}
 	}
 
 	const loadImages = () => {
