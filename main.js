@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const viewerImage = document.getElementById('viewer-image')
 	const tileContainer = document.getElementById('tile-container')
 
-	form.addEventListener('submit', () => {
+	const submit = () => {
 		hint.classList.add('is-hidden')
 		username = formText.value
 		postCount = 0
@@ -110,7 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		loadImages()
 		return false
-	})
+	}
+
+	form.addEventListener('submit', submit)
 
 	viewer.addEventListener('click', () => {
 		viewer.classList.remove('is-active')
@@ -193,5 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				hint.classList.add('is-error')
 				hint.innerHTML = 'Something went wrong.<br> Please try a different username.'
 			})
+	}
+
+	const search = window.location.search
+	if (search) {
+		formText.value = search.slice(1)
+		submit()
 	}
 })
