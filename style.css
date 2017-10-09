@@ -118,16 +118,13 @@ svg:hover, svg:focus {
 }
 
 #viewer-image {
-	opacity: 0;
+	display: none;
 	max-width: 80%;
 	max-height: 80%;
-	transform: scale(0.95);
 }
 
 #viewer-image.is-loaded {
-	opacity: 1;
-	transform: scale(1);
-	transition: opacity 200ms ease-out, transform 200ms ease-out;
+	display: block;
 }
 
 #tile-container {
@@ -149,16 +146,19 @@ svg:hover, svg:focus {
 	transform: translateY(-10px);
 }
 
-#spinner {
+.spinner {
 	display: none;
-	margin: 2rem auto;
 	animation-name: spin;
 	animation-duration: 0.5s;
 	animation-iteration-count: infinite;
 }
 
-#spinner.is-visible {
+.spinner.is-visible {
 	display: block;
+}
+
+#tile-spinner {
+	margin: 2rem auto;
 }
 
 @keyframes spin {

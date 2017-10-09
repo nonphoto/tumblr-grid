@@ -91,10 +91,11 @@ function hasScrolledToBottom() {
 
 document.addEventListener('DOMContentLoaded', () => {
 	const hint = document.getElementById('hint')
-	const spinner = document.getElementById('spinner')
+	const tileSpinner = document.getElementById('tile-spinner')
 	const form = document.getElementById('form-username')
 	const formText = document.getElementById('text-username')
 	const viewer = document.getElementById('viewer')
+	const viewerSpinner = document.getElementById('viewer-spinner')
 	const viewerImage = document.getElementById('viewer-image')
 	const tileContainer = document.getElementById('tile-container')
 
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 
 	viewerImage.addEventListener('load', () => {
+		viewerSpinner.classList.remove('is-visible')
 		viewerImage.classList.add('is-loaded')
 	})
 
@@ -138,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		viewer.classList.add('is-active')
 
 		if (viewerImage.src !== src) {
+			viewerSpinner.classList.add('is-visible')
 			viewerImage.classList.remove('is-loaded')
 			viewerImage.src = src
 			viewerImage.dataset.href = href
@@ -151,10 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		isLoading = true
 
-		spinner.classList.add('is-visible')
+		tileSpinner.classList.add('is-visible')
 
 		const onLoadEnd = () => {
-			spinner.classList.remove('is-visible')
+			tileSpinner.classList.remove('is-visible')
 			isLoading = false
 		}
 
